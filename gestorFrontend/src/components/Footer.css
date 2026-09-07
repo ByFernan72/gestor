@@ -1,0 +1,14 @@
+.footer {
+  margin-top: auto;
+  padding-top: 14px;
+  padding-bottom: 6px;
+  border-top: 1px solid var(--border-glass);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-shrink: 0;
+}
+
