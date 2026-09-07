@@ -60,7 +60,7 @@ public final class InMemoryRepositories {
     // Simula el comportamiento del repositorio de activos.
     private static Object handleActivo(Map<Long, Activo> store, AtomicLong sequence, Method method, Object[] args) {
         return switch (method.getName()) {
-            case "save" -> {
+            case "save", "saveAndFlush" -> {
                 Activo activo = (Activo) args[0];
                 if (activo.getIdActivo() == null) {
                     activo.setIdActivo(sequence.incrementAndGet());
@@ -85,7 +85,7 @@ public final class InMemoryRepositories {
     // Simula el comportamiento del repositorio de carteras.
     private static Object handleCartera(Map<Long, Cartera> store, AtomicLong sequence, Method method, Object[] args) {
         return switch (method.getName()) {
-            case "save" -> {
+            case "save", "saveAndFlush" -> {
                 Cartera cartera = (Cartera) args[0];
                 if (cartera.getIdCartera() == null) {
                     cartera.setIdCartera(sequence.incrementAndGet());
