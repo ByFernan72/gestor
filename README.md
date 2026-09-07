@@ -26,11 +26,19 @@ Hoy en día es la herramienta que utilizo a diario: me permite registrar y conta
 
 ## ¿Quieres probarlo?
 
-Si también estás cansado de las hojas de cálculo y quieres usarlo:
+Si solo quieres **descargar y usar la aplicación ya compilada** sin tener que configurar entornos de desarrollo, Java ni Node.js:
 
-1. Ve a la carpeta del ejecutable (dist/win-unpacked).
-2. Abre **Gestor.exe**.
-3. El backend Spring Boot y la base de datos arrancan solos en segundo plano con una pantalla de carga integrada.
+1. **Obtén la carpeta de la build:**
+   - La versión compilada y lista para funcionar se encuentra en la ruta:
+     [`gestorDesktop/dist/win-unpacked`](gestorDesktop/dist/win-unpacked/)
+   *(Si descargas una release desde GitHub o clonas el repositorio, solo necesitas esta carpeta).*
+2. **Ejecuta la app:**
+   - Entra en dicha carpeta y haz doble clic sobre:
+     **`Gestor.exe`**
+3. **Inicio automático:**
+   - El ejecutable arranca de forma autónoma el backend Spring Boot y la base de datos embebida H2 en segundo plano, mostrando una pantalla de carga y abriendo la ventana principal en pocos segundos. No requiere instalar servidores ni configurar bases de datos.
+
+> **Nota sobre requisitos del sistema:** Es necesario tener instalado **Java 21** o superior en el sistema (el ejecutable detectará la instalación de Java automáticamente).
 
 Para aprender a usar la interfaz, registrar carteras o hacer copias de seguridad de tus datos, consulta el manual detallado:
 [**Guía de Usuario**](docs/user/GUIA_USUARIO.md)

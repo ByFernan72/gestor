@@ -1,16 +1,30 @@
-﻿# Guia de Usuario - Gestor Financiero Personal
+# Guia de Usuario - Gestor Financiero Personal
 
 Bienvenido al manual de uso de **Gestor**, tu aplicacion de escritorio para el control y seguimiento patrimonial de inversiones, cuentas y activos financieros.
 
 ---
 
-## 1. Inicio Rapido
+## 1. Inicio Rápido
 
-1. **Abrir la Aplicacion:**
-   * Haz doble clic en el ejecutable Gestor.exe.
-   * La aplicacion arrancara automaticamente el motor interno y abrira la ventana principal. No necesitas configurar servidores ni bases de datos externas.
-2. **Ubicacion de tus Datos:**
-   * Todos tus datos se almacenan exclusivamente en tu propio ordenador de manera privada y segura.
+### ¿Dónde está la aplicación compilada (Build)?
+No necesitas compilar el proyecto ni instalar dependencias de desarrollo para usar la app. La build completa empaquetada se encuentra en:
+**`gestorDesktop/dist/win-unpacked/`**
+
+> Si te descargas una versión o release, puedes copiar y mover únicamente la carpeta **`win-unpacked`** donde prefieras en tu ordenador (por ejemplo, en `C:\Programas\Gestor` o en tu Escritorio). Contiene todos los archivos necesarios para funcionar de manera totalmente portable.
+
+### Pasos para Abrir la Aplicación:
+1. **Localiza el ejecutable:** Entra en la carpeta `gestorDesktop/dist/win-unpacked/`.
+2. **Ejecuta la app:** Haz doble clic en **`Gestor.exe`**.
+3. **Inicio automático:**
+   * Se abrirá una ventana de bienvenida (*splash screen*).
+   * El ejecutable arrancará de forma transparente en segundo plano el servidor Spring Boot y la base de datos embebida H2.
+   * En 3 a 5 segundos se abrirá la interfaz de usuario completa. No necesitas configurar servidores, credenciales ni bases de datos externas.
+
+### Requisito del Sistema:
+* **Java:** Tener instalado **Java 21** o superior en Windows. Gestor detectará automáticamente el entorno Java del sistema.
+
+### Ubicación de tus Datos:
+* Todos tus datos se almacenan exclusivamente en tu propio equipo en un archivo de base de datos local seguro: `%APPDATA%\gestor\database\gestordb.mv.db`. Ni tus cuentas ni tus balances salen nunca de tu ordenador.
 
 ---
 
