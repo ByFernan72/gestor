@@ -1,76 +1,82 @@
-﻿# Catalogo de API REST - Endpoints
+# Catalogo de API REST - Endpoints
 
-Base URL local: http://localhost:8080/api
+Base URL local: http://localhost:8080/api/v1
 
 ---
 
-## 1. Carteras (/api/carteras)
+## 1. Carteras (/api/v1/cartera)
 
 | Metodo | Endpoint | Descripcion | Payload Request | Respuesta |
 |---|---|---|---|---|
-| GET | /api/carteras | Listar todas las carteras con su balance total | Ninguno | List<CarteraListadoResponseDto> |
-| POST | /api/carteras | Crear una nueva cartera con o sin activos | CrearCarteraRequestDto | Cartera (201 Created) |
-| GET | /api/carteras/{id} | Obtener detalle completo de una cartera | Ninguno | ObtenerDatosCompletosCarteraRequestDto |
-| DELETE | /api/carteras/{id} | Eliminar una cartera y sus activos | Ninguno | 204 No Content |
-| GET | /api/carteras/top | Obtener las mejores carteras segun rendimiento | Ninguno | List<CarteraTopRequestDto> |
+| GET | /api/v1/cartera | Listar todas las carteras | Ninguno | List<Cartera> |
+| GET | /api/v1/cartera/listado | Listar carteras paginadas con totales y numero de activos | Parametros Pageable | CarteraListadoResponseDto |
+| GET | /api/v1/cartera/{id} | Obtener detalle completo de una cartera y sus activos | Ninguno | ObtenerDatosCompletosCarteraRequestDto |
+| POST | /api/v1/cartera | Crear una nueva cartera (con o sin activos iniciales) | CrearCarteraRequestDto | Cartera (200 OK) |
+| PATCH | /api/v1/cartera/{id}/nombre | Modificar el nombre de una cartera | Query param `nuevoNombreParam` o path variable | 204 No Content |
+| PATCH | /api/v1/cartera/{id}/descripcion | Modificar la descripcion de una cartera | Query param `nuevaDescripcion` | 204 No Content |
+| DELETE | /api/v1/cartera/{id} | Eliminar una cartera | Ninguno | 204 No Content |
 
 ---
 
-## 2. Activos (/api/activos)
+## 2. Activos (/api/v1/activo)
 
 | Metodo | Endpoint | Descripcion | Payload Request | Respuesta |
 |---|---|---|---|---|
-| POST | /api/activos | Crear un activo individual en una cartera | Activo | Activo (201 Created) |
-| GET | /api/activos/cartera/{idCartera} | Listar los activos pertenecientes a una cartera | Ninguno | List<Activo> |
-| PUT | /api/activos/{id} | Actualizar datos o balance de un activo | Activo | Activo (200 OK) |
-| DELETE | /api/activos/{id} | Eliminar un activo | Ninguno | 204 No Content |
+| POST | /api/v1/activo | Crear o guardar un activo individual | Activo (JSON) | Activo (200 OK) |
+| DELETE | /api/v1/activo/{id} | Eliminar un activo por su ID | Ninguno | 204 No Content |
 
 ---
 
-## 3. Movimientos y Transferencias (/api/movimientos)
+## 3. Movimientos y Transferencias (/api/v1/movimiento)
 
 | Metodo | Endpoint | Descripcion | Payload Request | Respuesta |
 |---|---|---|---|---|
-| GET | /api/movimientos | Listar historial completo de movimientos | Ninguno | List<Movimiento> |
-| POST | /api/movimientos | Registrar un nuevo movimiento/transferencia | MovimientoRequestDto | Movimiento (201 Created) |
-| DELETE | /api/movimientos/{id} | Revertir o eliminar un movimiento | Ninguno | 204 No Content |
+| POST | /api/v1/movimiento/transferencia | Ejecutar transferencia segura entre carteras o activos | MovimientoRequestDto | String ("Transferencia realizada con exito") |
+| GET | /api/v1/movimiento/historial/transferencias | Historial paginado de movimientos y transferencias | Parametros Pageable | Page<TransferenciaDto> |
 
 ---
 
-## 4. Dashboard (/api/dashboard)
+## 4. Dashboard (/api/v1/dashboard)
 
 | Metodo | Endpoint | Descripcion | Payload Request | Respuesta |
 |---|---|---|---|---|
-| GET | /api/dashboard/resumen | Estadisticas globales consolidadas (patrimonio total, activos, carteras) | Ninguno | DashboardResumenResponseDto |
+| GET | /api/v1/dashboard/resumen | Resumen ejecutivo (patrimonio total, top carteras, ultimos movimientos) | Ninguno | DashboardResumenResponseDto |
 
 ---
 
-## 5. Historial (/api/historial)
+## 5. Historial (/api/v1/historial)
 
 | Metodo | Endpoint | Descripcion | Payload Request | Respuesta |
 |---|---|---|---|---|
-| GET | /api/historial | Obtener snapshots temporales de balance | Ninguno | List<Historial> |
-| POST | /api/historial/snapshot | Registrar snapshot forzado de balance | Ninguno | 200 OK |
+| POST | /api/v1/historial | Tomar snapshot de saldo actual de todos los activos | Ninguno | 204 No Content |
 
 ---
 
-## 6. Perfil y Enlaces (/api/perfil)
+## 6. Perfil (/api/v1/perfil)
 
 | Metodo | Endpoint | Descripcion | Payload Request | Respuesta |
 |---|---|---|---|---|
-| GET | /api/perfil | Obtener perfil del usuario y links guardados | Ninguno | PerfilResponseDto |
-| PUT | /api/perfil | Actualizar nombre y enlaces de perfil | PerfilRequestDto | PerfilResponseDto |
+| GET | /api/v1/perfil/{id} | Obtener datos del perfil del usuario | Ninguno | PerfilResponseDto |
+| PUT | /api/v1/perfil/{id} | Actualizar nombre y enlaces del perfil | PerfilRequestDto | 204 No Content |
 
 ---
 
-## Manejo de Excepciones
+## 7. Ajustes (/api/v1/ajustes)
 
-Todas las respuestas de error retornan el siguiente formato estandar JSON mediante GlobalExceptionHandler:
+| Metodo | Endpoint | Descripcion | Payload Request | Respuesta |
+|---|---|---|---|---|
+| POST | /api/v1/ajustes/reset | Resetear completamente la base de datos (carteras, activos, movimientos y perfil) | Ninguno | 204 No Content |
 
-`json
+---
+
+## Formato Estandar de Respuestas de Error
+
+Todas las excepciones capturadas por `GlobalExceptionHandler` devuelven el siguiente formato estandar JSON:
+
+```json
 {
-  codigo: 400,
-  mensaje: Descripcion legible del error o validacion fallida,
-  fecha: 2026-09-06T09:30:00
+  "status": 400,
+  "mensaje": "Descripcion legible del error o validacion fallida",
+  "timestamp": "2026-09-07T10:45:00"
 }
-`
+```

@@ -7,13 +7,12 @@ Bienvenido al manual de uso de **Gestor**, tu aplicacion de escritorio para el c
 ## 1. Inicio Rápido
 
 ### ¿Dónde está la aplicación compilada (Build)?
-No necesitas compilar el proyecto ni instalar dependencias de desarrollo para usar la app. La build completa empaquetada se encuentra en:
-**`gestorDesktop/dist/win-unpacked/`**
-
-> Si te descargas una versión o release, puedes copiar y mover únicamente la carpeta **`win-unpacked`** donde prefieras en tu ordenador (por ejemplo, en `C:\Programas\Gestor` o en tu Escritorio). Contiene todos los archivos necesarios para funcionar de manera totalmente portable.
+Dado que los binarios ejecutables no se suben a Git (están en `.gitignore`), tienes dos alternativas para obtener la build:
+* **Desde GitHub:** Descarga el archivo comprimido de la aplicación desde la sección **[Releases](https://github.com/ByFernan72/gestor/releases)** y descomprímelo donde prefieras (por ejemplo, en el Escritorio o en `C:\Programas\Gestor`).
+* **Desde el código fuente:** Si has clonado el repositorio, compila con `.\gradlew.bat bootJar` y empaqueta ejecutando `cd gestorDesktop && npm run dist`. La build se generará en la carpeta local **`gestorDesktop/dist/win-unpacked/`**.
 
 ### Pasos para Abrir la Aplicación:
-1. **Localiza el ejecutable:** Entra en la carpeta `gestorDesktop/dist/win-unpacked/`.
+1. **Localiza el ejecutable:** Entra en la carpeta `win-unpacked/` (sea la descargada o la generada localmente).
 2. **Ejecuta la app:** Haz doble clic en **`Gestor.exe`**.
 3. **Inicio automático:**
    * Se abrirá una ventana de bienvenida (*splash screen*).
@@ -91,7 +90,7 @@ Dado que la aplicacion guarda todo en un archivo local sin depender de la nube:
 * **Hacer una Copia de Seguridad:**
   1. Cierra la aplicacion Gestor.
   2. Dirigete a la carpeta donde estan tus datos:
-     * En Windows: %APPDATA%\gestorDesktop\database\ (o en la carpeta data/ del programa).
-  3. Copia el archivo gestordb.mv.db a una memoria USB, disco externo o tu servicio en la nube preferido (Google Drive, Dropbox, etc.).
+     * En Windows: `%APPDATA%\gestor\database\` (es decir, `C:\Users\<TuUsuario>\AppData\Roaming\gestor\database\`).
+  3. Copia el archivo `gestordb.mv.db` a una memoria USB, disco externo o tu servicio en la nube preferido (Google Drive, Dropbox, etc.).
 * **Restaurar tus Datos:**
   * Basta con copiar tu archivo gestordb.mv.db de respaldo en la misma ruta y abrir la aplicacion.
