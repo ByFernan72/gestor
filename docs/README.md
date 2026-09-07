@@ -21,7 +21,7 @@ Indice general de documentacion para usuarios y desarrolladores.
   * Variables de entorno (.env / application.properties).
   * Integracion y ciclo de vida en Electron.
 * **Catalogo de Endpoints REST:** [docs/technical/API_ENDPOINTS.md](technical/API_ENDPOINTS.md)
-  * Especificacion de todos los endpoints HTTP (/api/carteras, /api/activos, /api/movimientos, /api/dashboard, /api/perfil, etc.).
+  * Especificacion de todos los endpoints HTTP (/api/v1/cartera, /api/v1/activo, /api/v1/movimiento, /api/v1/dashboard, /api/v1/perfil, etc.).
   * Payloads, DTOs de entrada/salida y codigos de estado HTTP.
   * Formato unificado de errores (GlobalExceptionHandler).
 

@@ -26,19 +26,36 @@ Hoy en día es la herramienta que utilizo a diario: me permite registrar y conta
 
 ## ¿Quieres probarlo?
 
-Si solo quieres **descargar y usar la aplicación ya compilada** sin tener que configurar entornos de desarrollo, Java ni Node.js:
+El directorio `dist/` (binarios de la aplicación) no se sube a Git al estar en `.gitignore` para no sobrecargar el repositorio con archivos pesados de 190 MB. 
 
-1. **Obtén la carpeta de la build:**
-   - La versión compilada y lista para funcionar se encuentra en la ruta:
-     [`gestorDesktop/dist/win-unpacked`](gestorDesktop/dist/win-unpacked/)
-   *(Si descargas una release desde GitHub o clonas el repositorio, solo necesitas esta carpeta).*
-2. **Ejecuta la app:**
-   - Entra en dicha carpeta y haz doble clic sobre:
-     **`Gestor.exe`**
-3. **Inicio automático:**
-   - El ejecutable arranca de forma autónoma el backend Spring Boot y la base de datos embebida H2 en segundo plano, mostrando una pantalla de carga y abriendo la ventana principal en pocos segundos. No requiere instalar servidores ni configurar bases de datos.
+Para obtener y ejecutar la aplicación tienes dos opciones:
+
+### Opción A: Descargar la Release lista para usar (Recomendado para usuarios)
+1. Ve a la sección de **[Releases de GitHub](https://github.com/ByFernan72/gestor/releases)** y descarga el archivo comprimido `gestor-win-unpacked.zip` de la última versión.
+2. Descomprímelo en la carpeta que prefieras de tu ordenador.
+3. Haz doble clic en **`Gestor.exe`**.
+
+### Opción B: Generar la Build desde el código fuente (Para desarrolladores)
+Si has clonado el repositorio:
+
+1. **Compilar el JAR del backend:**
+   ```powershell
+   .\gradlew.bat bootJar
+   ```
+2. **Empaquetar la aplicación de escritorio:**
+   ```powershell
+   cd gestorDesktop
+   npm install
+   npm run dist
+   ```
+3. **Ejecutar la app:**
+   - La build completa se generará en:
+     [`gestorDesktop/dist/win-unpacked/`](gestorDesktop/dist/win-unpacked/)
+   - Entra en esa carpeta y haz doble clic sobre **`Gestor.exe`**.
 
 > **Nota sobre requisitos del sistema:** Es necesario tener instalado **Java 21** o superior en el sistema (el ejecutable detectará la instalación de Java automáticamente).
+
+El ejecutable arranca de forma autónoma el backend Spring Boot y la base de datos embebida H2 en segundo plano, mostrando una pantalla de carga y abriendo la ventana principal en pocos segundos. No requiere instalar servidores ni configurar bases de datos.
 
 Para aprender a usar la interfaz, registrar carteras o hacer copias de seguridad de tus datos, consulta el manual detallado:
 [**Guía de Usuario**](docs/user/GUIA_USUARIO.md)

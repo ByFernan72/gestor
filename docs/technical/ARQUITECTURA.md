@@ -87,14 +87,14 @@ La configuracion se maneja a traves de `application.properties` con soporte de s
 Cuando se modifican las variables en el archivo .env, la logica del backend o la interfaz frontend, el ejecutable empaquetado debe regenerarse:
 
 1. **Recompilar Backend (JAR):**
-   `powershell
+   ```powershell
    .\gradlew.bat bootJar
-   `
+   ```
 2. **Reempaquetar Desktop:**
-   `bash
+   ```bash
    cd gestorDesktop
    npm run dist
-   `
+   ```
    El script pack.js copiara automaticamente el nuevo .env y splash.html a la carpeta de distribucion.
 
 **Precedencia de lectura del .env en produccion:**
