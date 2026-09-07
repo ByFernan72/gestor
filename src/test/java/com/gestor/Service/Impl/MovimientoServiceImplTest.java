@@ -40,7 +40,18 @@ class MovimientoServiceImplTest {
         ActivoRepository activoRepository = InMemoryRepositories.activoRepository(activoStore, activoSequence);
         MovimientoRepository movimientoRepository = InMemoryRepositories.movimientoRepository();
 
-        service = new MovimientoServiceImpl(carteraRepository, activoRepository, movimientoRepository);
+        org.springframework.transaction.PlatformTransactionManager transactionManager = new org.springframework.transaction.support.AbstractPlatformTransactionManager() {
+            @Override
+            protected Object doGetTransaction() { return new Object(); }
+            @Override
+            protected void doBegin(Object transaction, org.springframework.transaction.TransactionDefinition definition) {}
+            @Override
+            protected void doCommit(org.springframework.transaction.support.DefaultTransactionStatus status) {}
+            @Override
+            protected void doRollback(org.springframework.transaction.support.DefaultTransactionStatus status) {}
+        };
+
+        service = new MovimientoServiceImpl(carteraRepository, activoRepository, movimientoRepository, transactionManager);
     }
 
     @Test

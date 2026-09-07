@@ -137,12 +137,15 @@ if (fs.existsSync(envRoot)) {
   log('Archivo .env copiado a backend/');
 }
 
-// Copiar base de datos con datos precargados (data/gestordb.mv.db)
-const dbRoot = path.join(ROOT, '..', 'data');
-if (fs.existsSync(dbRoot)) {
+// Copiar base de datos con datos precargados si existe
+const dbFile = path.join(ROOT, '..', 'data', 'gestordb.mv.db');
+if (fs.existsSync(dbFile) && fs.statSync(dbFile).size > 0) {
   const backendDataDir = path.join(backendDir, 'data');
-  copyDir(dbRoot, backendDataDir);
-  log('Base de datos con datos precargados copiada a resources/backend/data/');
+  fs.mkdirSync(backendDataDir, { recursive: true });
+  fs.copyFileSync(dbFile, path.join(backendDataDir, 'gestordb.mv.db'));
+  log('Base de datos inicial copiada a resources/backend/data/');
+} else {
+  log('Sin base de datos preexistente: la aplicación creará una base de datos limpia al iniciar.');
 }
 
 // === 6. Resumen ===
