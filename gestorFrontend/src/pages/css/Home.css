@@ -1,0 +1,240 @@
+.home-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.home-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+.btn-quick-transfer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+}
+
+/* Layout Principal (Single Container Wrapper) */
+.dashboard-container {
+  border: 1px solid var(--border-glass);
+  border-radius: 24px;
+  background: var(--bg-glass-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 32px;
+  min-height: 680px;
+  margin-bottom: 40px;
+  box-shadow: var(--shadow-glass);
+
+  display: grid;
+  grid-template-columns: minmax(0, 38fr) minmax(0, 62fr);
+  gap: 32px;
+  transition: all var(--transition-speed) ease;
+}
+
+/* Columnas Internas */
+.home-left-col {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  min-width: 0;
+}
+
+.home-right-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Card Estilos Base */
+
+.dashboard-card {
+  position: relative;
+  background: var(--bg-glass-card);
+  border: 1px solid var(--border-glass);
+  border-radius: 20px;
+  padding: 32px;
+  overflow: hidden;
+  transition: all var(--transition-speed) ease;
+}
+
+.dashboard-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--accent-gradient);
+  opacity: 0;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(59, 130, 246, 0.25);
+}
+
+.dashboard-card:hover::before {
+  opacity: 1;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  font-weight: 700;
+  margin-bottom: 20px;
+  margin-top: 0;
+  letter-spacing: -0.3px;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+/* Balance */
+.balance-amount {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--accent-color);
+  letter-spacing: -1.5px;
+  word-break: break-word;
+  margin-top: 8px;
+}
+
+/* Tabla de Movimientos Rediseñada */
+.table-responsive {
+  overflow-x: auto;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.transactions-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  min-width: 650px;
+}
+
+.transactions-table th {
+  text-align: left;
+  padding: 16px 16px;
+  border-bottom: 1px solid var(--border-glass);
+  color: var(--text-secondary);
+  font-weight: 700;
+  white-space: nowrap;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.transactions-table td {
+  padding: 22px 16px;
+  border-bottom: 1px solid var(--border-glass);
+  color: var(--text-primary);
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.transactions-table tbody tr {
+  transition: all 0.3s ease;
+}
+
+.transactions-table tbody tr:hover {
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.transactions-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Top Carteras */
+.top-carteras-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.top-cartera-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-glass);
+  transition: all var(--transition-speed) ease;
+}
+
+body.dark-theme .top-cartera-item {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.top-cartera-item:hover {
+  background: rgba(59, 130, 246, 0.04);
+  transform: translateX(4px);
+}
+
+.top-cartera-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.top-cartera-name {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+}
+
+.top-cartera-value {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.top-cartera-percent {
+  font-weight: 800;
+  color: var(--accent-color);
+  font-size: 1.15rem;
+  background: rgba(59, 130, 246, 0.1);
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(59, 130, 246, 0.15);
+}
+
+/* Mobile Responsive */
+@media (max-width: 1100px) {
+  .dashboard-container {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .dashboard-card {
+    padding: 24px;
+  }
+
+  .balance-amount {
+    font-size: 2.8rem;
+  }
+
+  .transactions-table td {
+    padding: 18px 12px;
+  }
+}

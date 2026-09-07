@@ -1,0 +1,57 @@
+{
+  "name": "gestor",
+  "version": "1.0.0",
+  "description": "Gestor de Carteras - Aplicación de Escritorio",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "node pack.js",
+    "dist-eb": "electron-builder --win --x64"
+  },
+  "build": {
+    "appId": "com.gestor.app",
+    "productName": "Gestor",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "splash.html",
+      "renderer/**/*",
+      "backend/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "backend",
+        "to": "backend",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "renderer/favicon.svg"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "devDependencies": {
+    "electron": "^36.4.0",
+    "electron-builder": "^26.0.12"
+  },
+  "allowScripts": {
+    "electron@36.9.5": true,
+    "electron-winstaller@5.4.0": true
+  }
+}

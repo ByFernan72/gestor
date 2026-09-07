@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html lang=es>
+<head>
+  <meta charset=UTF-8>
+  <meta name=viewport content=width=device-width, initial-scale=1.0>
+  <title>Iniciando Gestor</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+    body {
+      background: radial-gradient(circle at center, #1e1e38 0%, #0d0d17 100%);
+      color: #f0f0f5;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      -webkit-app-region: drag;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+    .spinner-wrapper {
+      position: relative;
+      width: 64px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .spinner {
+      animation: rotate 1.8s linear infinite;
+      width: 58px;
+      height: 58px;
+    }
+    .spinner circle {
+      stroke: url(#gradient);
+      stroke-linecap: round;
+      stroke-dasharray: 150, 200;
+      stroke-dashoffset: -10;
+      animation: dash 1.5s ease-in-out infinite;
+    }
+    @keyframes rotate {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    @keyframes dash {
+      0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+      }
+      50% {
+        stroke-dasharray: 90, 200;
+        stroke-dashoffset: -35px;
+      }
+      100% {
+        stroke-dasharray: 90, 200;
+        stroke-dashoffset: -125px;
+      }
+    }
+    .glow {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.35) 0%, rgba(99, 102, 241, 0) 70%);
+      filter: blur(6px);
+    }
+    .title {
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+    }
+    .dots::after {
+      content: '';
+      animation: dots 1.5s steps(4, end) infinite;
+    }
+    @keyframes dots {
+      0%, 20% { content: ''; }
+      40% { content: '.'; }
+      60% { content: '..'; }
+      80%, 100% { content: '...'; }
+    }
+    .subtitle {
+      font-size: 12px;
+      color: #71717a;
+      letter-spacing: 0.3px;
+    }
+  </style>
+</head>
+<body>
+  <div class=container>
+    <div class=spinner-wrapper>
+      <div class=glow></div>
+      <svg class=spinner viewBox=0 0 50 50>
+        <defs>
+          <linearGradient id=gradient x1=0% y1=0% x2=100% y2=100%>
+            <stop offset=0% stop-color=#818cf8 />
+            <stop offset=50% stop-color=#6366f1 />
+            <stop offset=100% stop-color=#4f46e5 />
+          </linearGradient>
+        </defs>
+        <circle cx=25 cy=25 r=20 fill=none stroke-width=4></circle>
+      </svg>
+    </div>
+    <div class=title>Iniciando<span class=dots>...</span></div>
+    <div class=subtitle>Cargando servicios y datos</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+﻿# Gradle & Java build
+.gradle/
+build/
+bin/
+out/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# IDEs & Editors
+.idea/
+*.iws
+*.iml
+*.ipr
+.vscode/
+.classpath
+.project
+.settings/
+.apt_generated/
+.factorypath
+.springBeans
+.sts4-cache
+/nbproject/private/
+/nbbuild/
+/nbdist/
+/.nb-gradle/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Node & Frontend / Desktop dependencies
+**/node_modules/
+**/dist/
+**/dist-ssr/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Desktop packaging & binaries
+gestorDesktop/dist/
+gestorDesktop/backend/
+
+# Database files & local persistence
+data/
+*.mv.db
+*.trace.db
+
+# Environment variables & secrets
+.env
+.env.*
+.env.local
+!.env.example
+local.properties
+
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini

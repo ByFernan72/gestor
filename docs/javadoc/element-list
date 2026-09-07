@@ -1,0 +1,12 @@
+com.gestorBackend
+com.gestorBackend.Config
+com.gestorBackend.Controller
+com.gestorBackend.Dto
+com.gestorBackend.Dto.Request
+com.gestorBackend.Dto.Response
+com.gestorBackend.Exception
+com.gestorBackend.Model
+com.gestorBackend.Model.Enum
+com.gestorBackend.Repository
+com.gestorBackend.Service
+com.gestorBackend.Service.Impl
